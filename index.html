@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Innovation & Technology Alliance — UMC</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Innovation & Technology Alliance (ITA) — University of Minnesota Crookston" />
+  <style>
+    :root{
+      --bg:#0d1117; --bg-2:#161b22; --accent:#58a6ff; --text:#f0f6fc;
+      --glass: rgba(255,255,255,0.03);
+      --card-glow: 0 6px 24px rgba(88,166,255,0.08);
+      --radius:14px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;width:100%}
+    body{
+      margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#05060a);color:var(--text);-webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.5;
+    }
+
+    /* Page layout */
+    .wrap{width:min(100%,var(--max-width));margin:0 auto;padding:48px 24px}
+
+    header{position:fixed;left:0;right:0;top:16px;z-index:60;display:flex;align-items:center;justify-content:center}
+    .nav{width:calc(100% - 24px);max-width:var(--max-width);display:flex;align-items:center;justify-content:space-between;padding:8px 16px;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-text{line-height:1;min-width:0}
+    .brand-title,.brand-subtitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand-title{font-weight:700}
+    .brand-subtitle{font-size:12px;opacity:0.6;margin-top:2px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7dd3ff);display:flex;align-items:center;justify-content:center;color:#071024;font-weight:800;font-size:18px;box-shadow:var(--card-glow)}
+    nav{display:flex;align-items:center;gap:18px;flex:0 0 auto}
+    nav a{color:var(--text);opacity:0.85;text-decoration:none;font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--accent),#7dd3ff);padding:8px 14px;border-radius:10px;color:#071024}
+
+    /* Hero */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+    .hero-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:40px;align-items:center;width:min(100%,var(--max-width));margin:0 auto;padding:24px}
+    .hero-left{padding:28px}
+    .badge{display:inline-flex;align-items:center;gap:10px;background:rgba(88,166,255,0.08);color:var(--accent);padding:8px 12px;border-radius:999px;font-weight:600;margin-bottom:18px;max-width:100%;white-space:normal}
+    h1{font-size:clamp(34px,6vw,56px);margin:0 0 14px;line-height:1.02}
+    h1 .typed{color:var(--accent)}
+    p.lead{color:rgba(240,246,252,0.86);margin:0 0 22px;font-size:18px}
+    .hero-ctas{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,rgba(88,166,255,0.12),rgba(125,211,255,0.06));border:1px solid rgba(88,166,255,0.14);color:var(--text);padding:14px 20px;border-radius:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .18s ease,box-shadow .18s ease;text-align:center}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#7dd3ff);color:#061224;border:none;box-shadow:0 10px 40px rgba(88,166,255,0.18);transform:translateY(0)}
+    .btn:hover{transform:translateY(-4px)}
+
+    /* Right side card */
+    .info-card{background:var(--glass);backdrop-filter:blur(8px);padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--card-glow)}
+    .info-card h3{margin:0 0 8px}
+    .info-card p{margin:0;color:rgba(240,246,252,0.78)}
+
+    /* Floating code snippets */
+    .code-floating{position:absolute;inset:0;pointer-events:none;z-index:0}
+    .snippet{position:absolute;font-family:monospace;color:rgba(88,166,255,0.12);font-size:13px;white-space:nowrap;mix-blend-mode:screen}
+
+    /* Sections */
+    section{padding:64px 24px}
+    .section-title{max-width:var(--max-width);margin:0 auto 28px;padding:0 24px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:min(100%,var(--max-width));margin:0 auto}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:20px;border:1px solid rgba(88,166,255,0.06);box-shadow:0 8px 30px rgba(5,8,12,0.6);transition:transform .28s ease,box-shadow .28s ease;position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-10px);box-shadow:0 18px 50px rgba(88,166,255,0.12)}
+    .card .icon{font-size:28px;margin-bottom:12px}
+    .card h4{margin:0 0 8px}
+    .card p{margin:0;color:rgba(240,246,252,0.8)}
+    .card:after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(120deg,transparent,rgba(88,166,255,0.03));opacity:0;transition:opacity .28s}
+    .card:hover:after{opacity:1}
+
+    /* Why join timeline */
+    .timeline{width:min(100%,var(--max-width));margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:0 24px;gap:20px}
+    .timeline ul{list-style:none;padding:0;margin:0}
+    .timeline li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+    .tick{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7dd3ff);display:flex;align-items:center;justify-content:center;color:#071024;font-weight:800;flex:0 0 44px}
+
+    /* CTA */
+    .cta-block{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px;border-radius:16px;background:linear-gradient(180deg,rgba(88,166,255,0.04),rgba(255,255,255,0.01));border:1px solid rgba(88,166,255,0.06);box-shadow:0 18px 60px rgba(88,166,255,0.06);margin:24px 0}
+    .cta-block h2{margin:0 0 16px}
+    .cta-block p{max-width:820px;margin:0 0 20px;color:rgba(240,246,252,0.86)}
+
+    footer{padding:36px 24px;color:rgba(240,246,252,0.6);text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-content{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .timeline{grid-template-columns:1fr}
+      .hero{min-height:auto}
+      .info-card{max-width:720px;margin:0 28px}
+    }
+    @media (max-width:560px){
+      .cards{grid-template-columns:1fr}
+      nav a{display:none}
+      header{top:8px;padding:0}
+      .nav{width:calc(100% - 16px);padding:8px 10px}
+      .logo{width:38px;height:38px;border-radius:9px;font-size:16px;flex:0 0 38px}
+      .brand{gap:10px;max-width:100%}
+      .brand-title{font-size:13px}
+      .brand-subtitle{font-size:10px}
+      .wrap{padding:28px 16px}
+      section{padding:44px 16px}
+      .section-title{padding:0;margin-bottom:18px}
+      .hero{padding:84px 0 44px}
+      .hero-content{padding:0 16px;gap:22px}
+      .hero-left{padding:0}
+      .badge{border-radius:14px;font-size:12px;line-height:1.35}
+      h1{font-size:clamp(34px,12vw,46px);line-height:1.08}
+      p.lead{font-size:16px}
+      .hero-ctas{gap:10px}
+      .btn{width:100%;padding:13px 16px}
+      .info-card{margin:0;padding:18px}
+      .timeline{padding:0}
+      .timeline li{gap:12px}
+      .tick{width:38px;height:38px;flex-basis:38px}
+      .cta-block{padding:32px 18px;margin:0}
+      footer{padding:28px 16px}
+      .snippet{display:none}
+    }
+
+    /* Reveal animations */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Gradient accent animation */
+    .accent-anim{background:linear-gradient(90deg,var(--accent),#7dd3ff);background-size:200% 200%;animation:shift 6s linear infinite}
+    @keyframes shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">ITA</div>
+        <div class="brand-text">
+          <div class="brand-title">Innovation & Technology Alliance</div>
+          <div class="brand-subtitle">UMC — Student Organization (Proposed)</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#why">Why Join</a>
+        <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfGc7ROxuKbt0CRNvjjUhMac8mpuIqiactwTdjMW5mxy7Yu4Q/viewform" target="_blank" rel="noopener">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <canvas id="bg-canvas" class="code-floating"></canvas>
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="badge">Proposed Student Organization • University of Minnesota Crookston</div>
+          <h1 class="reveal">Innovation & Technology Alliance</h1>
+          <p class="lead reveal">Building the future through innovation, collaboration, and technology.</p>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap" class="reveal hero-ctas">
+            <a class="btn primary" id="interestBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfGc7ROxuKbt0CRNvjjUhMac8mpuIqiactwTdjMW5mxy7Yu4Q/viewform" target="_blank" rel="noopener">Show Your Interest</a>
+            <a class="btn" href="#about">Learn More</a>
+          </div>
+        </div>
+        <aside class="info-card reveal">
+          <h3>Join a collaborative tech community</h3>
+          <p>Whether you code, design, analyze data, or love tech, ITA will be a place to learn, build, and connect.</p>
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <small style="color:rgba(240,246,252,0.7)">Animated typing:</small>
+            <div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:10px;font-weight:700;color:var(--accent)" id="typed"></div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- floating snippets (decorative) -->
+      <div class="snippet" style="left:6%;top:18%;font-size:12px;opacity:0.9">const hello = 'world'</div>
+      <div class="snippet" style="left:72%;top:10%;font-size:11px;opacity:0.08;transform:rotate(6deg)">for(i=0;i&lt;10;i++) console.log(i)</div>
+      <div class="snippet" style="left:20%;top:68%;font-size:13px;opacity:0.06">&lt;div&gt;Build &lt;/div&gt;</div>
+      <div class="snippet" style="left:84%;top:72%;font-size:12px;opacity:0.08">async function init(){}</div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>What is ITA?</h2>
+      </div>
+      <div class="wrap reveal">
+        <p style="max-width:900px">The Innovation & Technology Alliance (ITA) is a proposed student organization at the University of Minnesota Crookston designed to bring together students who are passionate about technology, innovation, entrepreneurship, and emerging technologies.
+
+Whether you're interested in software development, artificial intelligence, cybersecurity, web development, data science, startups, or simply learning new skills, ITA aims to create a collaborative environment where students can learn, build, and grow together.</p>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-title"><h2>Features</h2></div>
+      <div class="cards">
+        <div class="card reveal">
+          <div class="icon">💻</div>
+          <h4>Software Development</h4>
+          <p>Build real-world projects and improve coding skills.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🤖</div>
+          <h4>Artificial Intelligence</h4>
+          <p>Explore AI tools, machine learning, and emerging technologies.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🔐</div>
+          <h4>Cybersecurity</h4>
+          <p>Learn security fundamentals and participate in challenges.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🚀</div>
+          <h4>Hackathons</h4>
+          <p>Compete, collaborate, and innovate through events and competitions.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🌐</div>
+          <h4>Networking</h4>
+          <p>Connect with students, alumni, and industry professionals.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">📈</div>
+          <h4>Career Development</h4>
+          <p>Prepare for internships, careers, and leadership opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="section-title"><h2>Why Join ITA?</h2></div>
+      <div class="timeline reveal">
+        <ul>
+          <li><div class="tick">1</div><div><strong>Learn New Technologies</strong><div style="opacity:0.8">Hands-on workshops and study groups.</div></div></li>
+          <li><div class="tick">2</div><div><strong>Build Real Projects</strong><div style="opacity:0.8">Collaborate on meaningful projects and portfolios.</div></div></li>
+          <li><div class="tick">3</div><div><strong>Participate in Hackathons</strong><div style="opacity:0.8">Compete and innovate with peers.</div></div></li>
+        </ul>
+        <ul>
+          <li><div class="tick">4</div><div><strong>Expand Your Network</strong><div style="opacity:0.8">Meet students, alumni, and professionals.</div></div></li>
+          <li><div class="tick">5</div><div><strong>Develop Leadership Skills</strong><div style="opacity:0.8">Lead teams and organize events.</div></div></li>
+          <li><div class="tick">6</div><div><strong>Prepare for Tech Careers</strong><div style="opacity:0.8">Get internship guidance and career prep.</div></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-block reveal">
+          <h2>Help Us Launch ITA</h2>
+          <p>We are currently gathering student interest before officially establishing the Innovation & Technology Alliance. Your response helps us demonstrate interest and build a stronger technology community at UMC.</p>
+          <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfGc7ROxuKbt0CRNvjjUhMac8mpuIqiactwTdjMW5mxy7Yu4Q/viewform" target="_blank" rel="noopener">Join the Interest List</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>Innovation & Technology Alliance (ITA) • University of Minnesota Crookston</div>
+    <div style="margin-top:8px;opacity:0.7">Designed by founding members of ITA.</div>
+  </footer>
+
+  <script>
+    // Canvas background (binary/code particles)
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const colors = ['rgba(88,166,255,0.09)','rgba(88,166,255,0.06)','rgba(125,211,255,0.04)'];
+
+    function resize(){
+      w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; initParticles();
+    }
+
+    function initParticles(){
+      particles = [];
+      const count = Math.floor((w*h)/60000);
+      for(let i=0;i<count;i++){
+        particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,life:Math.random()*100+rnd(20,300),c:colors[i%colors.length],s:Math.random()*1.6+0.6});
+      }
+    }
+
+    function rnd(a,b){return Math.random()*(b-a)+a}
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      // faint gradient overlay
+      const g = ctx.createLinearGradient(0,0,w,h);
+      g.addColorStop(0,'rgba(13,17,23,0.06)'); g.addColorStop(1,'rgba(22,27,34,0.06)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+      for(let p of particles){
+        p.x += p.vx; p.y += p.vy; p.life -= 0.05;
+        if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0; if(p.life<0){p.x=Math.random()*w;p.y=Math.random()*h;p.life=100+Math.random()*200}
+        ctx.fillStyle = p.c; ctx.font = (12*p.s|0)+'px monospace'; ctx.fillText(Math.random()>0.7?binary():'.',p.x,p.y);
+      }
+      requestAnimationFrame(draw);
+    }
+
+    function binary(){return Math.random()>0.5?'1':'0'}
+
+    resize(); window.addEventListener('resize',resize); draw();
+
+    // Floating snippets subtle movement
+    document.querySelectorAll('.snippet').forEach((el,i)=>{
+      const dur = 8 + Math.random()*16; el.animate([{transform:'translateY(0px)'},{transform:`translateY(${5+Math.random()*20}px)`},{transform:'translateY(0px)'}],{duration:dur*1000,iterations:Infinity,direction:'alternate',easing:'ease-in-out',delay:i*300});
+    });
+
+    // Typing effect
+    const words = ['Code','Innovate','Build','Collaborate'];
+    const typedEl = document.getElementById('typed');
+    let wi=0,ci=0,del=80,erasing=false;
+    function type(){
+      const word = words[wi];
+      if(!erasing){
+        typedEl.textContent = word.slice(0,ci+1);
+        ci++;
+        if(ci===word.length){erasing=true; setTimeout(type,900);return}
+      } else {
+        typedEl.textContent = word.slice(0,ci-1);
+        ci--;
+        if(ci===0){erasing=false;wi=(wi+1)%words.length;setTimeout(type,200);return}
+      }
+      setTimeout(type,erasing?del/1.2:del);
+    }
+    type();
+
+    // IntersectionObserver for reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});});
+    });
+
+  </script>
+</body>
+</html>
